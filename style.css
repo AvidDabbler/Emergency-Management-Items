@@ -1,0 +1,96 @@
+#main {
+    max-width: 800px;
+    width: 80%;
+    height: 80%;
+    position: relative;
+
+}
+#spacing{
+    width: 100%;
+    height: 75px;
+}
+#list {
+    width: 100%;
+    height: 300px;
+}
+.list-div {
+    position: relative;
+    padding-bottom: 100px;
+    height: 50%;
+}
+.center, .center a, .center button{
+    text-align: center;
+    align-items: center;
+}
+.top-pane{
+    padding-top: 15px;
+    background-color: white;
+    height: 100px; 
+    width: 100%;
+    top: 0;
+    position: fixed;
+    overflow: hidden;
+}
+.middle-pane{
+    top: 75px;
+    bottom: 75px;
+    overflow: auto;
+}.bottom-pane{
+    padding-top: 5px;
+    background-color: white;
+    height: 70px;
+    bottom: 0;
+    position: fixed;
+    overflow: hidden;
+}
+#ifrm {
+    border: solid 1px black;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: white;
+    z-index: 100;
+    height: 90%;
+    top: 50px;
+    width: 90%;
+    margin-left: -45%;
+}#delete {
+    background-image: url('assets/delete.svg');
+    background-size: 60%;
+    width: 60px;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 50px;
+}@media (max-width: 800px) {
+    #ifrm {
+        border: solid 1px black;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        background-color: white;
+        z-index: 100;
+            
+        height: 550px;
+        margin-top: -275px;
+
+        width: 600px;
+        margin-left: -300px;
+    }
+  }
+@media (max-width: 600px) {
+    #ifrm {
+        border: solid 1px black;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        background-color: white;
+        z-index: 100;
+            
+        height: 600px;
+        margin-top: -325px;
+
+        width: 400px;
+        margin-left: -200px;
+    }
+  }

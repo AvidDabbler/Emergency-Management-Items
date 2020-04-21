@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Inventory Request</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div>
+            <h1 class='black-80 u center helvetica w-100'>Inventory Request</h1>
+        </div>
+        <div id="main" class='center'>
+            <div id='metric-divs' class="center black-80 w-90 flex flex-wrap">
+                    <div id='masks' class='center ph3 pb3 mh3 mb3 metric helvetica di'>
+                        <h1 class='ma0 pa0'>Masks</h1>
+                        <h2 id='num-masks'>--</h2>
+                    </div>
+                    <div id='lysol' class='center ph3 pb3 mh3 mb3 metric helvetica di'>
+                        <h1 class='ma0 pa0'>Lysol</h1>
+                        <h2 id='num-lysol'>--</h2>
+                    </div>
+                    <div id='sanitizer' class='center ph3 pb3 mh3 mb3 metric helvetica di'>
+                        <h1 class='ma0 pa0'>Sanitizer</h1>
+                        <h2 id='num-sanitizer'>--</h2> 
+                    </div>  
+            </div>
+            
+            <div class='center'>
+                <p class='b helvetica'>Last Updated:</p><p id='update-time' class='helvetica'>--</p>
+            </div>
+    
+            <div id="nav" class="center">
+                <div id="buttons">
+                    <a id='request' class='w-60 helvetica f3 link dim br2 pv3 mb3 dib white bg-dark-blue'>Make a Request</a>
+                    <a id='request-list' class='def w-60 helvetica f3 link dim br2 pv3 mb3 dib white bg-dark-blue' href="requests.html">View Requests</a>
+                    <a id='refresh' class='def w-60 helvetica f3 link dim br2 pv3 mb3 dib white bg-dark-red'>Refresh</a>
+                </div>
+            </div>
+        </div>
+        
+        <script type="module" src="app.js" async defer></script>
+    </body>
+</html>

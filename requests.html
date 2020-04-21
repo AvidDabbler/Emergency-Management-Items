@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Inventory Requests</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="nav-div" class='ph3 pt3 top-pane '>
+            <a id='back' class='link center w-30 helvetica f3 link dim br2 pv3 mb3 dib white bg-gray' href="index.html"> < Back </a>
+        </div>
+        
+        <div id="main" class="main-with-nav list-div center">
+            <h1 class='center helvetica w-100'>Inventory Requests</h1>
+            <div id="list"><p class="i">Data is loading...</p></div>
+
+        </div>
+
+        <div id="refresh-div" class="center bottom-pane w-100">
+            <a id='refresh' class='center w-60 helvetica f3 link dim br2 pv3 mb3 dib white bg-dark-red'>Refresh</a>
+        </div>
+        
+        <script type="module" src="requests.js" async defer></script>
+    </body>
+</html>
