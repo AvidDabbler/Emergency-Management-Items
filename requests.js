@@ -1,5 +1,5 @@
 import { agol } from './private.js';
-import { check_for_data, requestList } from './survey.js';
+import { check_for_data, requestList, make_request } from './survey.js';
 import { facilities } from './assets/facilities.js'
 
 (async () => {    
@@ -10,19 +10,11 @@ import { facilities } from './assets/facilities.js'
     
     //JSON URLS
     const requestGeo = agol().request_geojson;
-    const updateGeo = agol().update_geojson;
-    const shipmentGeo = agol().shipment_geojson;
-    const confirmGeo = agol().confirm_geojson;
-
     const confirmSur = agol().confirm_survey;
     
     
     //HTML SECTION SELECTORS
     const list = document.querySelector('#list');
-    const num_masks = document.querySelector('#num-masks');
-    const num_lysol = document.querySelector('#num-lysol');
-    const num_sanitizers = document.querySelector('#num-sanitizer');
-    const update_time = document.querySelector('#update-time');
     
     
     //POLYFILLS
@@ -58,6 +50,8 @@ import { facilities } from './assets/facilities.js'
         }
     };    
 
+
+
     
     const clickEvent = (event) => {
         const eve = request_event(event);
@@ -70,39 +64,18 @@ import { facilities } from './assets/facilities.js'
         const link = event.target.closest('.link');
         const request_item = event.target.closest('.openpop');
         const refresh_target = event.target.closest('#refresh');
+        let url = `${confirmSur}?field:requesting_facility=${eve.facility}&field:request_id=${eve.oid}&field:confirmed_masks=${eve.masks}&field:confirmed_lysols=${eve.lysols}&field:confirmed_sanitizers=${eve.sanitizers}`;
 
         console.log(event)
         if(!link){
-            
             event.preventDefault();
-        
         }
-        if(!iframe_target && iframe_div){
-            console.log('close iframe')
+        if(event.target.closest == null && iframe_div){
             iframe_div.parentNode.removeChild(iframe_div);
-            return;
-
         }else if (refresh_target){  
-            
             refresh();
-
         }else if(request_item){    
-            console.log(eve);
-            let url = `${confirmSur}?field:requesting_facility=${eve.facility}&field:request_id=${eve.oid}&field:confirmed_masks=${eve.masks}&field:confirmed_lysols=${eve.lysols}&field:confirmed_sanitizers=${eve.sanitizers}`;
-
-            console.log(url);
-
-            let item = event.target.closest('.openpop');
-            let ifrm = document.createElement('iframe');
-            const refresh_click = event.target.closest('#refresh');
-
-            ifrm.setAttribute('id', 'ifrm'); // assign an id
-            ifrm.setAttribute(`src`, url);
-        
-            // to place before another page element
-            var el = document.getElementById('marker');
-            main.parentNode.insertBefore(ifrm, el);
-
+            make_request('list', url);
         }else{
             console.error('Unregistered Click');
             return;

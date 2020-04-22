@@ -11,9 +11,12 @@
 #list {
     width: 100%;
     height: 300px;
+    margin-top: 20px;
+
 }
 .list-div {
     position: relative;
+    padding-top: 10px;
     padding-bottom: 100px;
     height: 50%;
 }
@@ -29,6 +32,9 @@
     top: 0;
     position: fixed;
     overflow: hidden;
+}
+.top-pane a{
+    max-width: 150px;
 }
 .middle-pane{
     top: 75px;

@@ -242,12 +242,12 @@ const requestList = async (url) => {
         feature.attributes['requesting_facility_text'] = facil[feature.attributes.requesting_facility];
 
         html += 
-        `<div id='${feature.attributes.globalid}' class='button_popup fl w-100 '> 
-            <a class = 'openpop center fl w-100 link dim br2 ph3 pv2 mb2 dib white bg-blue' 
+        `<div id='${feature.attributes.globalid}' class='button_popup w-90 center dib'> 
+            <a class = 'openpop center w-100 link dim br2 ph3 pv2 mb2 dib white bg-blue' 
             data-oid = "${feature.attributes.objectid}" data-masks=${feature.attributes.requesting_masks} data-lysols=${feature.attributes.requesting_lysols} data-sanitizers="${feature.attributes.requesting_sanitizers}" data-facility="${feature.attributes.requesting_facility}">
 
-                <p class='f5 helvetica fl w-100'><b>Facility: </b>${feature.attributes.requesting_facility_text}</p>
-                <p class='f6 helvetica fl w-100'><b>Date/Time: </b>${featureDate()}</p>
+                <p class='f5 helvetica w-100'><b>Facility: </b>${feature.attributes.requesting_facility_text}</p>
+                <p class='f6 helvetica w-100'><b>Date/Time: </b>${featureDate()}</p>
             </a>
         </div>`
     });
@@ -260,4 +260,16 @@ const requestList = async (url) => {
 
 };
 
-export { inventory_render, get_survey_data, clear_div, check_for_data, requestList }
+const make_request = (divid, url) => {
+    const div = document.getElementById(divid);
+    var ifrm = document.createElement('iframe');
+    ifrm.setAttribute('id', 'ifrm'); // assign an id
+    ifrm.setAttribute(`src`, url);
+
+    // to place before another page element
+    var el = document.getElementById('marker');
+    div.parentNode.insertBefore(ifrm, el);
+
+};
+
+export { inventory_render, get_survey_data, clear_div, check_for_data, requestList, make_request }

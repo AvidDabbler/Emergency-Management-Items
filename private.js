@@ -1,6 +1,8 @@
 
 const agol = () => {
     return{
+        datahub: 'https://walters-data-hub-metrostl.hub.arcgis.com',
+        
         request_geojson: 'https://services2.arcgis.com/ZV8Mb62EedSw2aTU/arcgis/rest/services/Emergency_Management_Inventory_Request_v2_dataview/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json',
         request_survey: 'https://survey123.arcgis.com/share/37b3572b854a494aa2150ba87b8ad6a3',
 

@@ -53,16 +53,7 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
         });
     };
 
-    const make_request = (url) => {
-        var ifrm = document.createElement('iframe');
-        ifrm.setAttribute('id', 'ifrm'); // assign an id
-        ifrm.setAttribute(`src`, url);
 
-        // to place before another page element
-        var el = document.getElementById('marker');
-        main.parentNode.insertBefore(ifrm, el);
-
-    };
 
     
     const clickEvent = (event) => {
@@ -84,11 +75,11 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
         if(!iframe_target && iframe_div){
             iframe_div.parentNode.removeChild(iframe_div);
         }else if(request_target){
-            make_request(requestSur);
+            make_request('main', requestSur);
         }else if(shipping_target){
-            make_request(shipmentSur);
+            make_request('main', shipmentSur);
         }else if(update_target){
-            make_request(updateSur);
+            make_request('main', updateSur);
         }else if(refresh_click){
             refresh();
         }else{
