@@ -53,10 +53,10 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
         });
     };
 
-    const make_request = () => {
+    const make_request = (url) => {
         var ifrm = document.createElement('iframe');
         ifrm.setAttribute('id', 'ifrm'); // assign an id
-        ifrm.setAttribute(`src`, requestSur);
+        ifrm.setAttribute(`src`, url);
 
         // to place before another page element
         var el = document.getElementById('marker');
@@ -74,6 +74,8 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
         const def = event.target.closest('.def');
         const refresh_click = event.target.closest('#refresh');
         const request_target = event.target.closest('#request');
+        const shipping_target = event.target.closest('#shipping');
+        const update_target = event.target.closest('#update');
         
         if(!def){
             event.preventDefault();
@@ -82,7 +84,11 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
         if(!iframe_target && iframe_div){
             iframe_div.parentNode.removeChild(iframe_div);
         }else if(request_target){
-            make_request();
+            make_request(requestSur);
+        }else if(shipping_target){
+            make_request(shipmentSur);
+        }else if(update_target){
+            make_request(updateSur);
         }else if(refresh_click){
             refresh();
         }else{
