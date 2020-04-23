@@ -1,5 +1,5 @@
 import { agol } from './private.js';
-import { check_for_data, requestList, make_request } from './survey.js';
+import { requestList, iframe_gen } from './survey.js';
 import { facilities } from './assets/facilities.js'
 
 (async () => {    
@@ -54,28 +54,30 @@ import { facilities } from './assets/facilities.js'
 
     
     const clickEvent = (event) => {
-        const eve = request_event(event);
-
+        
         // TARGET VARIABLES
-        const iframe_target = event.target.closest('#ifrm');
-        const iframe = document.getElementById('ifrm');
         const iframe_div = document.getElementById('ifrm');
-        const back = event.target.closest('#back');
+        const close_div = document.getElementById('close');
+        
         const link = event.target.closest('.link');
         const request_item = event.target.closest('.openpop');
         const refresh_target = event.target.closest('#refresh');
-        let url = `${confirmSur}?field:requesting_facility=${eve.facility}&field:request_id=${eve.oid}&field:confirmed_masks=${eve.masks}&field:confirmed_lysols=${eve.lysols}&field:confirmed_sanitizers=${eve.sanitizers}`;
-
+        
+        
         console.log(event)
         if(!link){
             event.preventDefault();
         }
-        if(event.target.closest == null && iframe_div){
+        if(event.target.id == 'close-survey'){
             iframe_div.parentNode.removeChild(iframe_div);
+            close_div.parentNode.removeChild(close_div);
+            
         }else if (refresh_target){  
             refresh();
         }else if(request_item){    
-            make_request('list', url);
+            const eve = request_event(event);
+            let url = `${confirmSur}?field:requesting_facility=${eve.facility}&field:request_id=${eve.oid}&field:confirmed_masks=${eve.masks}&field:confirmed_lysols=${eve.lysols}&field:confirmed_sanitizers=${eve.sanitizers}`;
+            iframe_gen('list', url);
         }else{
             console.error('Unregistered Click');
             return;

@@ -2,7 +2,7 @@
     max-width: 800px;
     height: 80%;
     position: relative;
-
+    
 }
 #spacing{
     width: 100%;
@@ -30,6 +30,7 @@
     height: 100px; 
     width: 100%;
     top: 0;
+    z-index:1;
     position: fixed;
     overflow: hidden;
 }
@@ -38,8 +39,8 @@
 }
 .middle-pane{
     top: 75px;
-    bottom: 75px;
     overflow: auto;
+    padding-bottom: 150px;
 }.bottom-pane{
     padding-top: 5px;
     background-color: white;
@@ -67,6 +68,11 @@
     background-repeat: no-repeat;
     background-position: center center;
     padding: 50px;
+}#close {
+    bottom: 10px;
+    z-index: 101;
+    position: fixed;
+    
 }@media (max-width: 800px) {
     #ifrm {
         border: solid 1px black;

@@ -1,11 +1,10 @@
 import { agol } from './private.js';
-import { inventory_render, get_survey_data, clear_div, check_for_data } from './survey.js';
+import { inventory_render, get_survey_data, clear_div, check_for_data, iframe_gen } from './survey.js';
 
 (function (){    
     
     // JAVASCRIPT VARIABLES
     let inventory
-    
     
     //JSON URLS
     const requestGeo = agol().request_geojson;
@@ -18,7 +17,6 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
     const requestSur = agol().request_survey;
     const updateSur = agol().update_survey;
     const shipmentSur = agol().shipment_survey;
-    const confirmSur = agol().confirm_survey;
     
     
     //HTML SECTION SELECTORS
@@ -60,26 +58,27 @@ import { inventory_render, get_survey_data, clear_div, check_for_data } from './
         
         // TARGET VARIABLES
         const iframe_div = document.getElementById('ifrm');
-        const iframe_target = event.target.closest('#ifrm');
-        const link = event.target.closest('.link');
+        const close_div = document.getElementById('close');
+        
         const def = event.target.closest('.def');
         const refresh_click = event.target.closest('#refresh');
         const request_target = event.target.closest('#request');
         const shipping_target = event.target.closest('#shipping');
         const update_target = event.target.closest('#update');
-        
+
         if(!def){
             event.preventDefault();
         }
     
-        if(!iframe_target && iframe_div){
+        if(event.target.id == 'close-survey'){
             iframe_div.parentNode.removeChild(iframe_div);
+            close_div.parentNode.removeChild(close_div);
         }else if(request_target){
-            make_request('main', requestSur);
+            iframe_gen('main', requestSur);
         }else if(shipping_target){
-            make_request('main', shipmentSur);
+            iframe_gen('main', shipmentSur);
         }else if(update_target){
-            make_request('main', updateSur);
+            iframe_gen('main', updateSur);
         }else if(refresh_click){
             refresh();
         }else{

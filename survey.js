@@ -260,16 +260,23 @@ const requestList = async (url) => {
 
 };
 
-const make_request = (divid, url) => {
+const iframe_gen = (divid, url) => {
     const div = document.getElementById(divid);
     var ifrm = document.createElement('iframe');
     ifrm.setAttribute('id', 'ifrm'); // assign an id
     ifrm.setAttribute(`src`, url);
 
+    var button = document.createElement('div');
+    button.setAttribute('id', 'close'); // assign an id
+    button.setAttribute('class', 'w-100 center');
+    button.innerHTML = "<a id='close-survey' class='center w-60 helvetica f3 link br2 pv3 mb3 dib white bg-dark-red'>Close</a>";
+
+
     // to place before another page element
     var el = document.getElementById('marker');
     div.parentNode.insertBefore(ifrm, el);
+    div.parentNode.insertBefore(button, el)
 
 };
 
-export { inventory_render, get_survey_data, clear_div, check_for_data, requestList, make_request }
+export { inventory_render, get_survey_data, clear_div, check_for_data, requestList, iframe_gen }
