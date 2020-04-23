@@ -219,10 +219,23 @@ const requestList = async (url) => {
     let html = ''
 
     console.log(request);
+    request.sort((a,b)=>{
+        if(a.attributes.CreationDate > b.attributes.CreationDate){
+            return -1;
+        }else if(a.attributes.CreationDate < b.attributes.CreationDate){
+            return 1;
+        }else{
+            return 0;
+        }
+    })
     request.forEach(feature => {
         let d = new Date(feature.attributes.CreationDate);
 
         const featureDate = () =>{
+            let seconds = () => {
+
+            }
+
             let hours = () => {
                 if (d.getHours(d) > 12){
                     return {
@@ -251,10 +264,7 @@ const requestList = async (url) => {
             </a>
         </div>`
     });
-    html += 
-        `<div id='rl-spacing' class='button_popup fl w-100 '> 
-            <div id='spacing'></div>
-        </div>`
+
     
     return html;
 
