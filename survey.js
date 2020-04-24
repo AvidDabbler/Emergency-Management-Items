@@ -168,21 +168,30 @@ const get_survey_data = async (requestGeo, updateGeo, shipmentGeo, confirmGeo) =
 };
 
 let formatted_time = () => {
-    let date = new Date();
+    let d = new Date();
     let hours = () => {
-        if (date.getHours() > 12){
+        if (d.getHours() > 12){
             return {
-                hours: date.getHours() - 12,
+                hours: d.getHours() - 12,
                 ampm: ' PM',
             }
         }else{
             return{
-                hours: date.getHours(),
+                hours: d.getHours(),
                 ampm: ' AM',
             }
         }
     };    
-    return date.getMonth() + '-' + date.getDate() + '-' + date.getFullYear() + ' ' + hours().hours + ':' + date.getMinutes() + ':' + date.getSeconds() + hours().ampm ;
+    return leadingZero(d.getMonth())+ '-' + leadingZero(d.getDate()) + '-' + d.getFullYear() + ' ' + leadingZero(hours().hours) + ':' + leadingZero(d.getMinutes()) + ':' + leadingZero(d.getSeconds()) + hours().ampm ;
+};
+
+let leadingZero = (num) => {
+    if(num<10){
+        return '0' + num;
+    }
+    else{
+        return num;
+    }
 };
 
 const inventory_render = async (d, mask, lysol, sanitizer, time) => {
@@ -196,18 +205,7 @@ const inventory_render = async (d, mask, lysol, sanitizer, time) => {
 
 const check_for_data = async (requestGeo, updateGeo, shipmentGeo, confirmGeo) => {
     let data;
-    // if(localStorage.getItem('data') !== 'undefined'){
-    //     let request = JSON.parse(localStorage.getItem('data'));
-    //     let requestDate = new Date(request.date);
-
-    //     // make sure the survey data is no less than 30 seconds old
-    //     if((new Date() - requestDate) > (120 * 1000) ){
-    //         data =  await get_survey_data(requestGeo, updateGeo, shipmentGeo, confirmGeo)
-    //     }
-    // }
-    // else{
         data = await get_survey_data(requestGeo, updateGeo, shipmentGeo, confirmGeo)
-    // }
     return data;
 };
 
@@ -232,9 +230,6 @@ const requestList = async (url) => {
         let d = new Date(feature.attributes.CreationDate);
 
         const featureDate = () =>{
-            let seconds = () => {
-
-            }
 
             let hours = () => {
                 if (d.getHours(d) > 12){
@@ -249,7 +244,7 @@ const requestList = async (url) => {
                     }
                 }
             };    
-            return d.getMonth() + '-' + d.getDate() + '-' + d.getFullYear() + ' ' + hours().hours + ':' + d.getMinutes() + ':' + d.getSeconds() + hours().ampm ;
+            return d.getMonth() + '-' + d.getDate() + '-' + d.getFullYear() + ' ' + leadingZero(hours().hours) + ':' + leadingZero(d.getMinutes()) + ':' + leadingZero(d.getSeconds()) + hours().ampm ;
         };
 
         feature.attributes['requesting_facility_text'] = facil[feature.attributes.requesting_facility];
