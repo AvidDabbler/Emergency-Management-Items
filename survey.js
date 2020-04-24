@@ -252,7 +252,7 @@ const requestList = async (url) => {
         html += 
         `<div id='${feature.attributes.globalid}' class='button_popup w-90 center dib'> 
             <a class = 'openpop center w-100 link dim br2 ph3 pv2 mb2 dib white bg-blue' 
-            data-oid = "${feature.attributes.objectid}" data-masks=${feature.attributes.requesting_masks} data-lysols=${feature.attributes.requesting_lysols} data-sanitizers="${feature.attributes.requesting_sanitizers}" data-facility="${feature.attributes.requesting_facility}">
+            data-oid = "${feature.attributes.objectid}" data-masks=${feature.attributes.requesting_masks} data-lysols=${feature.attributes.requesting_lysols} data-sanitizers="${feature.attributes.requesting_sanitizers}" data-facility="${feature.attributes.requesting_facility.toString()}">
 
                 <p class='f5 helvetica w-100'><b>Facility: </b>${feature.attributes.requesting_facility_text}</p>
                 <p class='f6 helvetica w-100'><b>Date/Time: </b>${featureDate()}</p>

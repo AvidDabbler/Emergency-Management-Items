@@ -1,8 +1,8 @@
 const facilities = () => {
     return {
         "29th_street_rail_maintenance_fa": "29th Street Rail Maintenance Facility",
-        "5th_&_missouri": "5th & Missouri",
-        "8th_&_pine": "8th & Pine",
+        "5th_and_missouri": "5th & Missouri",
+        "8th_and_pine": "8th & Pine",
         "arch_parking_garage": "Arch Parking Garage",
         "arch_laclede's_landing": "Arch-Laclede's Landing",
         "ballas_transit_center": "Ballas Transit Center",
