@@ -105,5 +105,5 @@ dist
 
 
 
-.private.js
-.personal_agol.js
+./private.js
+./personal_agol.js

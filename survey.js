@@ -266,6 +266,8 @@ const requestList = async (url) => {
 };
 
 const iframe_gen = (divid, url) => {
+    const container = document.createElement('iframe-container');
+
     const div = document.getElementById(divid);
     var ifrm = document.createElement('iframe');
     ifrm.setAttribute('id', 'ifrm'); // assign an id
@@ -274,7 +276,7 @@ const iframe_gen = (divid, url) => {
     var button = document.createElement('div');
     button.setAttribute('id', 'close'); // assign an id
     button.setAttribute('class', 'w-100 center');
-    button.innerHTML = "<a id='close-survey' class='center w-60 helvetica f3 link br2 pv3 mb3 dib white bg-dark-red'>Close</a>";
+    button.innerHTML = "<a id='close-survey' class='center w-30 helvetica f3 link br2 pv3 dib white bg-dark-red'>Close</a>";
 
 
     // to place before another page element
