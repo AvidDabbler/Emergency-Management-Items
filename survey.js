@@ -1,4 +1,4 @@
-import { facilities } from './assets/facilities.js'
+import { facilities } from './assets/facilities'
 const facil = facilities();
 
 // INTERACTIVE HELPER FUNCTIONS
