@@ -1,7 +1,6 @@
 // import { agol } from './private.js';
 import { agol } from './personal_agol.js';
 import { requestList, iframe_gen } from './survey.js';
-import { facilities } from './assets/facilities.js'
 
 (async () => {    
     
