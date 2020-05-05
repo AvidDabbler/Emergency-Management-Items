@@ -210,14 +210,35 @@ const check_for_data = async (requestGeo, updateGeo, shipmentGeo, confirmGeo) =>
     return data;
 };
 
-const requestList = async (url) => {
-    const response = await fetch(url);
-    const json = await response.json();
-    const request = json.features;
-    
+const requestList = async (reqURL, confirmURL) => {
+    // const response = await fetch(url);
+    // const json = await response.json();
+    // const request = json.features;
+
+    const getdata = (url) => {
+        let data = fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            return data.features
+        })
+        return data
+    };
+
+    const confList = (confd) => {
+        let list = []
+        for(let f in confd){
+            list.push(confd[f].attributes.request_id);
+        } 
+        return list
+    }
+
+    let request = await getdata(reqURL);
+    let confirm = await getdata(confirmURL);
+    const confirmList = await confList(confirm);
+    console.log(confirmList);
+
     let html = ''
 
-    console.log(request);
     request.sort((a,b)=>{
         if(a.attributes.CreationDate > b.attributes.CreationDate){
             return -1;
@@ -227,6 +248,8 @@ const requestList = async (url) => {
             return 0;
         }
     })
+
+
     request.forEach(feature => {
         let d = new Date(feature.attributes.CreationDate);
 
@@ -250,9 +273,28 @@ const requestList = async (url) => {
 
         feature.attributes['requesting_facility_text'] = facil[feature.attributes.requesting_facility];
 
+        const isConfirmed = (feat) => {
+            if(feat.attributes.objectid in confirmList){
+                console.log('confirmed')
+                return{
+                    confirmed: true,
+                    color: 'red',
+                    tag: 'p'
+                }
+            }else{
+                console.log('unconfirmed')
+                return {
+                    confirmed: false,
+                    color: 'blue',
+                    tag: 'a',
+                }
+            }
+        };
+
+
         html += 
         `<div id='${feature.attributes.globalid}' class='button_popup w-90 center dib'> 
-            <a class = 'openpop center w-100 link dim br2 ph3 pv2 mb2 dib white bg-blue' 
+            <a class = 'openpop center w-100 link dim br2 ph3 pv2 mb2 dib white bg-${isConfirmed(feature).color}' 
             data-oid = "${feature.attributes.objectid}" data-masks=${feature.attributes.requesting_masks} data-lysols=${feature.attributes.requesting_lysols} data-sanitizers="${feature.attributes.requesting_sanitizers}" data-facility="${feature.attributes.requesting_facility.toString()}">
 
                 <p class='f5 helvetica w-100'><b>Facility: </b>${feature.attributes.requesting_facility_text}</p>

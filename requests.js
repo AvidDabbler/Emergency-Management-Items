@@ -8,9 +8,11 @@ import { requestList, iframe_gen } from './survey.js';
     let inventory, requestDate
     
     
+    
     //JSON URLS
     const requestGeo = agol().request_geojson;
     const confirmSur = agol().confirm_survey;
+    const confirmGeo = agol().confirm_geojson;
     
     
     //HTML SECTION SELECTORS
@@ -32,7 +34,7 @@ import { requestList, iframe_gen } from './survey.js';
     
     
     const refresh = () => {
-        requestList(requestGeo)
+        requestList(requestGeo, confirmGeo)
         .then(rdata => list.innerHTML = rdata)
     };
     
@@ -46,7 +48,6 @@ import { requestList, iframe_gen } from './survey.js';
             masks: get_data('data-masks'),
             sanitizers: get_data('data-sanitizers'),
             lysols: get_data('data-lysols'),
-
         }
     };    
 
@@ -74,10 +75,14 @@ import { requestList, iframe_gen } from './survey.js';
             
         }else if (refresh_target){  
             refresh();
-        }else if(request_item){    
+        }else if(request_item){
             const eve = request_event(event);
-            let url = `${confirmSur}?field:requesting_facility=${eve.facility}&field:request_id=${eve.oid}&field:confirmed_masks=${eve.masks}&field:confirmed_lysols=${eve.lysols}&field:confirmed_sanitizers=${eve.sanitizers}`;
-            iframe_gen('list', url);
+            let confirmed = event.target.closest('.openpop').getAttribute('class').includes('bg-blue');
+            let url = '';
+            if(confirmed){
+                url = `${confirmSur}?field:requesting_facility=${eve.facility}&field:request_id=${eve.oid}&field:confirmed_masks=${eve.masks}&field:confirmed_lysols=${eve.lysols}&field:confirmed_sanitizers=${eve.sanitizers}`;
+                iframe_gen('list', url);
+            }
         }else{
             console.error('Unregistered Click');
             return;
